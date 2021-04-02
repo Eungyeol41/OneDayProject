@@ -8,7 +8,37 @@ public class ScoreVO {
 	private Integer math;
 	private Integer science;
 	private Integer history;
+	private Integer total;
+	private Float avg;
+	private Integer sumtotal;
+	private Float floatAvg;
 	
+	
+	
+	public Integer getSumtotal() {
+		return sumtotal;
+	}
+	public void setSumtotal(Integer sumtotal) {
+		this.sumtotal = sumtotal;
+	}
+	public Float getFloatAvg() {
+		return floatAvg;
+	}
+	public void setFloatAvg(Float floatAvg) {
+		this.floatAvg = floatAvg;
+	}
+	public Integer getTotal() {
+		return total;
+	}
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+	public Float getAvg() {
+		return avg;
+	}
+	public void setAvg(Float avg) {
+		this.avg = avg;
+	}
 	public String getName() {
 		return name;
 	}
