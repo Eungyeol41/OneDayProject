@@ -89,7 +89,7 @@ public class ScoreServiceV1 {
 			}
 
 			System.out.println("=".repeat(line));
-			System.out.println(name + " 학생이름의 성적을 입력하세요 ( 성적범위 : 0 ~ 100, 입력을 중단하려면 QUIT )");
+			System.out.println(name + " 학생의 성적을 입력하세요 ( 성적범위 : 0 ~ 100, 입력을 중단하려면 QUIT )");
 			System.out.println("-".repeat(line));
 
 			System.out.print("국어 >> ");
