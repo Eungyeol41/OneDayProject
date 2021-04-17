@@ -22,6 +22,7 @@ public class WordServiceImplV1 implements WordService {
 	protected List<WordVO> wordList;
 	protected final int 영어 = 0;
 	protected final int 한글 = 1;
+	
 	int line = 80;
 	Integer retry;
 	int winPoint = 0;
@@ -39,7 +40,7 @@ public class WordServiceImplV1 implements WordService {
 	}
 
 	@Override
-	public Integer selectMenu() {
+	public void selectMenu() {
 		// TODO 메뉴 출력
 
 		while (true) {
@@ -55,10 +56,8 @@ public class WordServiceImplV1 implements WordService {
 			System.out.print("메뉴를 입력하세요 >> ");
 			String strMenu = scan.nextLine();
 			if (strMenu.equals("QUIT")) {
-				System.out.print("이름을 입력하세요 >> ");
-				name = scan.nextLine();
-				this.loadPoint(point);
-				continue;
+				System.out.println("게임이 종료됩니다");
+				break;
 			}
 
 			Integer intMenu = null;
@@ -67,21 +66,29 @@ public class WordServiceImplV1 implements WordService {
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
-				System.out.println("❌ 업무는 1, 2, QUIT만 입력하세요 ❌");
+				System.out.println("❌ 메뉴는 1, 2, QUIT만 입력하세요 ❌");
+				continue;
 			}
 			if (intMenu < 1 || intMenu > 2) {
 				System.out.println("❌ 업무는 1, 2, QUIT만 입력하세요 ❌");
 				continue;
 			}
 			if (intMenu == 1) {
-				this.viewWord(0);
-				continue;
+				try {
+					this.viewWord(0);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else if (intMenu == 2) {
-				this.importPoint(name, point);
-				this.viewWord(point);
+				Integer loadPoint = this.importPoint(); // 파일에서 point 불러오기
+				try {
+					this.viewWord(point); // point 넣어서 게임 시작
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
-			return intMenu;
 		} // end while
 
 	} // end selectMenu
@@ -160,8 +167,22 @@ public class WordServiceImplV1 implements WordService {
 				System.out.println("=".repeat(line));
 				System.out.print(" >> ");
 				String answer = scan.nextLine();
+				
 				if (answer.equals("Quit")) {
-					return;
+					System.out.println("게임을 끝냅니다.");
+					System.out.println("저장을 하시겠습니까?");
+					System.out.println("1을 누르면 저장하기 / 2를 누르면 그냥 끝냅니다.");
+					System.out.print(" >> ");
+					Integer endNum = scan.nextInt();
+					if(endNum == 1) { // 1 : 이름 저장 후 point 저장 method로 이동  / 2 : 끝내기
+						System.out.println("저장할 이름을 입력해주세요");
+						System.out.print(" >> ");
+						name = scan.nextLine();
+						this.loadPoint(name, point);
+						System.out.println("저장이 완료되었습니다.");
+						return;
+					} else return;
+				
 				} // end if
 				if (answer.equalsIgnoreCase(wordVO.getEnglish())) {
 					System.out.println("정답입니다!");
@@ -172,7 +193,7 @@ public class WordServiceImplV1 implements WordService {
 
 				} else {
 					System.out.println(" 틀렸습니다.");
-					Integer wNum = this.wrong(wordVO);
+					Integer wNum = this.wrong(wordVO, point);
 					if (wNum == 1) {
 						nCount++;
 						if (nCount >= 3) {
@@ -194,7 +215,7 @@ public class WordServiceImplV1 implements WordService {
 	} // end viewWord
 
 	@Override
-	public Integer wrong(WordVO word) {
+	public Integer wrong(WordVO word, int point) {
 		// TODO 첫 번째 틀렸을 경우 - 재도전, hint, skip 선택 가능
 
 		while (true) {
@@ -245,7 +266,7 @@ public class WordServiceImplV1 implements WordService {
 	}
 
 	@Override
-	public void loadPoint(int point) {
+	public void loadPoint(String name, int point) {
 		// TODO 포인트 점수 파일을 저장하기
 
 		String pointFile = "src/com/callor/word/" + name + "point.txt";
@@ -257,18 +278,19 @@ public class WordServiceImplV1 implements WordService {
 			fileWriter = new FileWriter(pointFile);
 			out = new PrintWriter(fileWriter);
 
-			for (int i = 0; i < wordList.size(); i++) {
-				WordVO vo = wordList.get(i);
-				out.println(point);
-			}
+			out.print(point);
+			
+			out.flush();
+			out.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public void importPoint(String name, int point) {
+	public Integer importPoint() {
+		String name;
 		// TODO point.txt 파일 읽기.. 불러오기
 
 		System.out.print("이름 입력 >> ");
@@ -282,8 +304,7 @@ public class WordServiceImplV1 implements WordService {
 			fileReader = new FileReader(pointFile);
 			buffer = new BufferedReader(fileReader);
 
-			String reader = buffer.readLine();
-			point = Integer.valueOf(reader);
+			String point = buffer.readLine();
 			
 			buffer.close();
 			
@@ -294,6 +315,12 @@ public class WordServiceImplV1 implements WordService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Integer intPoint = Integer.valueOf(point);
+		
+		System.out.println(name + "님의 현재 보유 포인트 : " + point);
+		
+		return intPoint;
 
 	}
 
