@@ -7,8 +7,8 @@ public interface WordService {
 	public Integer selectMenu();
 	public void loadWord();
 	public WordVO getWord();
-	public void viewWord();
-	public void wrong(WordVO vo);
+	public void viewWord(int point);
+	public Integer wrong(WordVO vo);
 	public void loadPoint(int point);
 	public void importPoint(String name, int point);
 	

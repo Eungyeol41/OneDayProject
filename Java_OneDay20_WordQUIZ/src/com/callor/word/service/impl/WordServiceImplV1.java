@@ -74,11 +74,11 @@ public class WordServiceImplV1 implements WordService {
 				continue;
 			}
 			if (intMenu == 1) {
-				this.viewWord();
+				this.viewWord(0);
 				continue;
 			} else if (intMenu == 2) {
 				this.importPoint(name, point);
-				
+				this.viewWord(point);
 			}
 
 			return intMenu;
@@ -134,7 +134,7 @@ public class WordServiceImplV1 implements WordService {
 	} // end getWord
 
 	@Override
-	public void viewWord() {
+	public void viewWord(int point) {
 		// TODO 단어 알파벳 단위로 끊어서 화면에 단어 출력
 
 		while (true) {
@@ -171,57 +171,72 @@ public class WordServiceImplV1 implements WordService {
 					break;
 
 				} else {
-					this.wrong(wordVO);
-					nCount++;
-					if(nCount >= 3) {
+					System.out.println(" 틀렸습니다.");
+					Integer wNum = this.wrong(wordVO);
+					if (wNum == 1) {
+						nCount++;
+						if (nCount >= 3) {
+							break;
+						}
+						continue;
+					} else if (wNum == 2) {
+						point -= 2;
 						break;
+					} else if (wNum == 3) {
+						continue;
 					}
-					continue;
-				} // end if-else
-			}
 
-		} // end while
+				} // end 정답 / 오답
+			} // end while
+
+		} // end while (알파벳 무작위 배열 및 문제 출제)
 
 	} // end viewWord
 
 	@Override
-	public void wrong(WordVO word) {
+	public Integer wrong(WordVO word) {
 		// TODO 첫 번째 틀렸을 경우 - 재도전, hint, skip 선택 가능
 
-		System.out.println("=".repeat(line));
-		System.out.println(" 틀렸습니다.! ");
-		System.out.println("-".repeat(line));
-
 		while (true) {
-			System.out.println("1. 재도전 🔁");
-			System.out.println("2. Skip ⏩");
-			System.out.println("3. Hint");
+			System.out.println("1. 재도전 🔁 ( 3번 가능하고 point -1 ) ");
+			System.out.println("2. Skip ⏩ ( point -2 )");
+			System.out.println("3. Hint ( point -1 )");
 			System.out.println("=".repeat(line));
 			System.out.print(" >> ");
 			String strNum = scan.nextLine();
 			Integer intNum = Integer.valueOf(strNum);
 
 			if (intNum == 1) {
-				if (nCount < 3) {
-					return;
+				if (nCount == 3) {
+					System.out.println("재도전은 3번까지! 가능합니다.");
+					continue;
+				} else if (nCount < 3) {
+					return 1;
+				} else if (point <= 0) {
+					System.out.println("point가 부족합니다..");
+					continue;
+				} // 재도전일 경우 ( 횟수가 3이면 불가 문구 나타내고 3보다 작으면 1을 return해서 viewWord() method에서 이용
+					// point가 0 이하일 경우 도전 불가 문구
+			} else if (intNum == 2) {
+
+				if (point <= 0) {
+					System.out.println("point가 부족합니다..");
+					continue;
 				}
-				break;
-			} else if (intNum == 2) { // Skip
-				
-				point -= 1;
-				System.out.println("포인트 : " + point);
-				
-				return; // skip은 다음 문제로
-				
+				return 2; // Skip다음 문제로 넘어가기 / point가 없으면 불가능.
+
 			} else if (intNum == 3) {
 				System.out.println("Hint 입력 시 보여드립니다. - 포인트 감점 예정");
 				System.out.print(" >> ");
 				String strHint = scan.nextLine();
-				if (strHint.equals("Hint")) {
+				if (point <= 0) {
+					System.out.println("💣 0포인트 이하는 Hint를 보여드릴 수 없습니다 💣");
+					continue;
+				} else if (strHint.equals("Hint")) {
 					System.out.println("Hint : " + word.getKorea());
 					point -= 1;
 					System.out.println("포인트 : " + point);
-				}
+				} // Hint
 			} else {
 				System.out.println(" ❌ 1, 2만 입력하세요 ❌");
 				continue;
@@ -255,10 +270,10 @@ public class WordServiceImplV1 implements WordService {
 	@Override
 	public void importPoint(String name, int point) {
 		// TODO point.txt 파일 읽기.. 불러오기
-		
+
 		System.out.print("이름 입력 >> ");
 		name = scan.nextLine();
-		
+
 		String pointFile = "src/com/callor/word/" + name + "point.txt";
 		FileReader fileReader = null;
 		BufferedReader buffer = null;
@@ -267,12 +282,11 @@ public class WordServiceImplV1 implements WordService {
 			fileReader = new FileReader(pointFile);
 			buffer = new BufferedReader(fileReader);
 
-			while (true) {
-				String reader = buffer.readLine();
-				if (reader == null)
-					break;
-				point = Integer.valueOf(reader);
-			}
+			String reader = buffer.readLine();
+			point = Integer.valueOf(reader);
+			
+			buffer.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
