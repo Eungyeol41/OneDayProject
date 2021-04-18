@@ -717,7 +717,7 @@ furious:노하여 펄펄뛰는
 furnish:공급하다
 furniture:가구
 furthermore:더우기
-future:미래
+future:
 gamble:도박하다 도박 도박해서 잃다
 garage:차고
 garden:뜰
