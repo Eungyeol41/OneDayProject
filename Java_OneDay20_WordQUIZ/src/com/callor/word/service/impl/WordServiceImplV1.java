@@ -34,7 +34,6 @@ public class WordServiceImplV1 implements WordService {
 		rnd = new Random();
 		scan = new Scanner(System.in);
 		wordList = new ArrayList<WordVO>();
-
 		this.loadWord();
 	}
 
@@ -105,9 +104,12 @@ public class WordServiceImplV1 implements WordService {
 			fileReader = new FileReader(fileName);
 			buffer = new BufferedReader(fileReader);
 
+			String reader = new String();
+			
 			while (true) {
-				String reader = buffer.readLine();
+				reader = buffer.readLine();
 				if (reader == null) break;
+
 				String[] words = reader.split(":");
 
 				WordVO wordVO = new WordVO();
