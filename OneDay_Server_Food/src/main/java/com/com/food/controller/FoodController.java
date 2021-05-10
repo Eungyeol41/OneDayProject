@@ -41,13 +41,15 @@ public class FoodController extends HttpServlet{
 			mfService.selectAll();
 			out.println("섭취정보 확인");
 			
-		}else if(subPath.equals("/date")) {
+		} else if(subPath.equals("/date")) {
 			String strDate = req.getParameter("date");
 			
 			if(strDate == null || strDate.equals("")) {
 				out.println("날짜가 없음");
 				out.close();
+				
 			} else {
+				
 				List<TotalDTO> totalDTO = mfService.findByDate(strDate);
 				ServletContext app = this.getServletContext();
 				app.setAttribute("FOOD", totalDTO);
