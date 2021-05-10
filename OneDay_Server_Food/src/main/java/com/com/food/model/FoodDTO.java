@@ -13,17 +13,15 @@ import lombok.ToString;
 @NoArgsConstructor
 public class FoodDTO {
 
-	private String fd_fcode; // char(7 byte)
-	private String fd_fname; // nvarchar2(125 char)
-	private Integer fd_year; // number
-	private String fd_ccode; // char(6 byte)
-	private String fd_icode; // char(4 byte)
-	private Integer fd_one; // number
-	private Integer fd_total; // number
-	private Integer fd_energy; // number
-	private Integer fd_protein; // number
-	private Integer fd_fat; // number
-	private Integer fd_car; // number
-	private Integer fd_sugar; // number
+	private Integer mf_seq;
+	private String mf_date;
+	private String mf_code;
+	private String mf_name;
+	private Integer mf_intake;
+	private Integer mf_energy;
+	private Integer mf_protein;
+	private Integer mf_fat;	
+	private Integer mf_car;	
+	private Integer mf_sugar;
 	
 }

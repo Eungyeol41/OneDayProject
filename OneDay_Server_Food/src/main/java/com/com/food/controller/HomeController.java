@@ -1,4 +1,4 @@
-package com.com.food;
+package com.com.food.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.com.food.model.FoodDTO;
 import com.com.food.model.TotalDTO;
 import com.com.food.service.MyfoodService;
 import com.com.food.service.impl.MyfoodServiceImplV1;
@@ -27,7 +28,7 @@ public class HomeController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<TotalDTO> totalList = mfService.selectAll();
+		List<FoodDTO> totalList = mfService.selectAll();
 		req.setAttribute("TOTALLIST", totalList);
 		req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
 		

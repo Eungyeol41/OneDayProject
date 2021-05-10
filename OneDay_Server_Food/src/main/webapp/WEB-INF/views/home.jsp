@@ -10,8 +10,8 @@
 <body>
 	<h1>다 이 어 트 하 자</h1>
 	
-	<c:if test="${empty TOTALLIST}">없어여</c:if>
-	
+	<h3>섭취 목록</h3>
+	<c:if test="${empty TOTALLIST}">결과가 없음!!</c:if>
 	<table>
 		<tr>
 			<th><th><th><th>날짜</th>
@@ -37,10 +37,10 @@
 		</c:forEach>
 	</table>
 	
-	<h4><a href="food/insert">섭취정보 등록</a></h4>
+	<h4><a href="intake/insert">섭취정보 등록</a></h4>
 	
 	<h4>날짜를 입력하세요</h4>
-	<form action="food/date">
+	<form action="intake/date">
 		날짜 
 		<input name="date">
 		<button>조회</button>
