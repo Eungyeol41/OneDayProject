@@ -18,7 +18,7 @@ import com.com.food.model.TotalDTO;
 import com.com.food.service.MyfoodService;
 import com.com.food.service.impl.MyfoodServiceImplV1;
 
-@WebServlet("/intake/*")
+@WebServlet("/inform/*")
 public class FoodController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

@@ -37,10 +37,10 @@
 		</c:forEach>
 	</table>
 	
-	<h4><a href="intake/insert">섭취정보 등록</a></h4>
+	<h4><a href="inform/insert">섭취정보 등록</a></h4>
 	
 	<h4>날짜를 입력하세요</h4>
-	<form action="intake/date">
+	<form action="inform/date">
 		날짜 
 		<input name="date">
 		<button>조회</button>
