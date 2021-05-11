@@ -30,8 +30,10 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 
 			FoodDTO foodDTO = new FoodDTO();
 			foodDTO.setMf_date(rSet.getString("날짜"));
-			foodDTO.setMf_intake(rSet.getInt("섭취량"));
+			foodDTO.setMf_code(rSet.getString("식품코드"));
 			foodDTO.setMf_name(rSet.getString("식품명"));
+			foodDTO.setMf_intake(rSet.getInt("섭취량"));
+			foodDTO.setMf_total(rSet.getInt("총내용량"));
 			foodDTO.setMf_energy(rSet.getInt("에너지"));
 			foodDTO.setMf_protein(rSet.getInt("단백질"));
 			foodDTO.setMf_fat(rSet.getInt("지방"));
@@ -47,7 +49,7 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 	public List<FoodDTO> selectAll() {
 		// TODO 전체리스트 보여주기
 
-		String sql = "SELECT * FROM view_식품정보, tbl_myfoods";
+		String sql = "SELECT * FROM view_나의섭취정보";
 		PreparedStatement pStr = null;
 		try {
 			pStr = dbConn.prepareStatement(sql);
@@ -58,8 +60,10 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 
 				FoodDTO foodDTO = new FoodDTO();
 				foodDTO.setMf_date(rSet.getString("날짜"));
-				foodDTO.setMf_intake(rSet.getInt("섭취량"));
+				foodDTO.setMf_code(rSet.getString("식품코드"));
 				foodDTO.setMf_name(rSet.getString("식품명"));
+				foodDTO.setMf_intake(rSet.getInt("섭취량"));
+				foodDTO.setMf_total(rSet.getInt("총내용량"));
 				foodDTO.setMf_energy(rSet.getInt("에너지"));
 				foodDTO.setMf_protein(rSet.getInt("단백질"));
 				foodDTO.setMf_fat(rSet.getInt("지방"));
@@ -79,11 +83,11 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 	}
 
 	@Override
-	public List<TotalDTO> findByDate(String date) {
+	public List<FoodDTO> findByDate(String date) {
 		// TODO 날짜로 조회하기
 
-		String sql = "SELECT * FROM tbl_myfoods";
-		sql += "WHERE mf_date = ? ";
+		String sql = "SELECT * FROM view_나의섭취정보";
+		sql += " WHERE 날짜 = ? ";
 
 		PreparedStatement pStr = null;
 		try {
@@ -91,30 +95,27 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 			pStr.setString(1, date);
 
 			ResultSet rSet = pStr.executeQuery();
-			
-			List<TotalDTO> totalList = new ArrayList<TotalDTO>();
+
+			List<FoodDTO> foodList = new ArrayList<FoodDTO>();
 			while (rSet.next()) {
 
-				TotalDTO totalDTO = new TotalDTO();
-				totalDTO.setFd_fcode(rSet.getString("식품코드"));
-				totalDTO.setFd_fname(rSet.getString("식품명"));
-				totalDTO.setFd_year(rSet.getInt("출시연도"));
-				totalDTO.setCp_code(rSet.getString("제조사코드"));
-				totalDTO.setCp_com(rSet.getString("제조사명"));
-				totalDTO.setIt_code(rSet.getString("분류코드"));
-				totalDTO.setIt_name(rSet.getString("분류명"));
-				totalDTO.setFd_one(rSet.getInt("일회제공량"));
-				totalDTO.setFd_total(rSet.getInt("총내용량"));
-				totalDTO.setFd_energy(rSet.getInt("에너지"));
-				totalDTO.setFd_protein(rSet.getInt("단백질"));
-				totalDTO.setFd_fat(rSet.getInt("지방"));
-				totalDTO.setFd_car(rSet.getInt("탄수화물"));
-				totalDTO.setFd_sugar(rSet.getInt("총당류"));
-				totalList.add(totalDTO);
+				FoodDTO foodDTO = new FoodDTO();
+				foodDTO.setMf_date(rSet.getString("날짜"));
+				foodDTO.setMf_code(rSet.getString("식품코드"));
+				foodDTO.setMf_name(rSet.getString("식품명"));
+				foodDTO.setMf_intake(rSet.getInt("섭취량"));
+				foodDTO.setMf_total(rSet.getInt("총내용량"));
+				foodDTO.setMf_energy(rSet.getInt("에너지"));
+				foodDTO.setMf_protein(rSet.getInt("단백질"));
+				foodDTO.setMf_fat(rSet.getInt("지방"));
+				foodDTO.setMf_car(rSet.getInt("탄수화물"));
+				foodDTO.setMf_sugar(rSet.getInt("총당류"));
+				foodList.add(foodDTO);
+				
 			} // end while
 			rSet.close();
 			pStr.close();
-			return totalList;
+			return foodList;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -173,16 +174,16 @@ public class MyfoodServiceImplV1 implements MyfoodService {
 	public int insert(MyfoodVO myfoodVO) { // myfoodVO or TotalDTO
 		// TODO 섭취정보 추가
 		String sql = "INSERT INTO tbl_myfoods";
-		sql += "(mf_seq, mf_date, mf_ccode, mf_intake) ";
+		sql += "(mf_seq, mf_date, mf_fcode, mf_intake) ";
 		sql += "VALUES(food_seq.NEXTVAL, ?, ?, ? ) ";
 
 		PreparedStatement pStr = null;
 		try {
 			pStr = dbConn.prepareStatement(sql);
 			pStr.setString(1, myfoodVO.getMf_date());
-			pStr.setString(2, myfoodVO.getMf_ccode());
+			pStr.setString(2, myfoodVO.getMf_fcode());
 			pStr.setInt(3, myfoodVO.getMf_intake());
-			
+
 			int result = pStr.executeUpdate();
 			pStr.close();
 			return result;

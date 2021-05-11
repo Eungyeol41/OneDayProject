@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h4>식품명을 입력하세요</h4>
-	<form action="nameSelect">
+	<form action="/nameSelect">
 		<input name="name">
 		<button>입력</button>
 	</form>

@@ -13,15 +13,16 @@ import lombok.ToString;
 @NoArgsConstructor
 public class FoodDTO {
 
-	private Integer mf_seq;
-	private String mf_date;
-	private String mf_code;
-	private String mf_name;
-	private Integer mf_intake;
-	private Integer mf_energy;
-	private Integer mf_protein;
-	private Integer mf_fat;	
-	private Integer mf_car;	
-	private Integer mf_sugar;
+	private Integer mf_seq; // 일련번호
+	private String mf_date; // 날짜
+	private String mf_code; // 식품코드
+	private String mf_name; // 식품명
+	private Integer mf_intake; // 섭취량
+	private Integer mf_total; // 총내용량
+	private Integer mf_energy; // 에너지
+	private Integer mf_protein; // 단백질
+	private Integer mf_fat;	// 지방
+	private Integer mf_car;	// 탄수화물
+	private Integer mf_sugar; // 총당류
 	
 }

@@ -13,9 +13,9 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MyfoodVO {
 
-	private Integer mf_seq; // number
-	private String mf_date; // varchar2(10 byte)
-	private String mf_ccode; // char(7 byte)
-	private Integer mf_intake; // number
+	private Integer mf_seq; // 일련번호
+	private String mf_date; // 날짜
+	private String mf_fcode; // 식품코드
+	private Integer mf_intake; // 섭취량
 	
 }

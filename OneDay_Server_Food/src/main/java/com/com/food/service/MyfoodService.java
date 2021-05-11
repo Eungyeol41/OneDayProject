@@ -9,7 +9,7 @@ import com.com.food.model.TotalDTO;
 public interface MyfoodService {
 
 	public List<FoodDTO> selectAll();
-	public List<TotalDTO> findByDate(String date);
+	public List<FoodDTO> findByDate(String date);
 	public List<TotalDTO> findByfName(String mf_name);
 	public int insert(MyfoodVO myfoodVO);
 	

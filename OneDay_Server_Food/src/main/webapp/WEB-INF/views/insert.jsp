@@ -16,6 +16,5 @@
 			<tr><th></th><td><button>입력</button></td></tr>
 		</table>
 	</form>
-
 </body>
 </html>

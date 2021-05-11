@@ -9,7 +9,6 @@
 </head>
 <body>
 	<h4>식품명으로 검색한 결과</h4>
-	<c:if test="${empty TLIST}">결과가 없음!!</c:if>
 	<table>
 		<tr>
 			<th>식품코드</th>
@@ -27,6 +26,7 @@
 			<th>탄수화물</th>
 			<th>총당류</th>
 		</tr>
+		<c:if test="${empty TLIST}">결과가 없음!!</c:if>
 		<c:forEach items="${TLIST}" var="TOTAL">
 			<tr>
 				<th><a href="inser?code=${TOTAL.code}">${TOTAL.code}
