@@ -9,8 +9,14 @@
 </head>
 <body>
 	<h1>다 이 어 트 하 자</h1>
+	<table>
+		<tr>
+			<th><form action="inform/selectName"><button>식품명으로 조회하기</button></form></th>
+			<th><form action="inform/insert"><button>섭취정보 등록</button></form></th>
+		</tr>
+	</table>
 	
-	<h3>섭취 목록</h3>
+	<h2>섭취 LIST</h2>
 	<table>
 		<tr>
 			<th>날짜</th>
@@ -38,20 +44,14 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
 	<p>======================================================================</p>
-	<h3>날짜를 입력하세요</h3>
+	<h2>날짜를 입력하세요</h2>
 	<form action="inform/date">
 		날짜 
 		<input type="date" name="date">
 		<button>조회</button>
 	</form>
 	
-	<p>======================================================================</p>
 	
-	<h3><a href="inform/selectName">식품명으로 조회하기</a></h3>		
-	
-	<p>======================================================================</p>
-	<h3><a href="inform/insert">섭취정보 등록</a></h3>
 </body>
 </html>
