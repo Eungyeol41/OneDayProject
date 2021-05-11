@@ -10,7 +10,7 @@ public interface MyfoodService {
 
 	public List<FoodDTO> selectAll();
 	public List<FoodDTO> findByDate(String date);
-	public List<TotalDTO> findByfName(String mf_name);
+	public List<TotalDTO> findByfName(String fd_fname);
 	public int insert(MyfoodVO myfoodVO);
 	
 }

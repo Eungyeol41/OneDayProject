@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>섭취 목록</h3>
+	<h3>섭취 리스트</h3>
 	<table>
 		<tr>
 			<th>날짜</th>

@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4>식품명을 입력하세요</h4>
-	<form action="/nameSelect">
-		<input name="name">
+	<h2>식품명을 입력하세요</h2>
+	<form action="/OneDay_Server_Food/inform/nameSelect">
+		<input name="fname">
 		<button>입력</button>
 	</form>
 </body>

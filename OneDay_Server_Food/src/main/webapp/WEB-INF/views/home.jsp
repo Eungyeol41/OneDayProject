@@ -10,8 +10,6 @@
 <body>
 	<h1>다 이 어 트 하 자</h1>
 	
-	<h3><a href="inform/insert">섭취정보 등록</a></h3>
-	
 	<h3>섭취 목록</h3>
 	<table>
 		<tr>
@@ -45,8 +43,15 @@
 	<h3>날짜를 입력하세요</h3>
 	<form action="inform/date">
 		날짜 
-		<input name="date">
+		<input type="date" name="date">
 		<button>조회</button>
 	</form>
+	
+	<p>======================================================================</p>
+	
+	<h3><a href="inform/selectName">식품명으로 조회하기</a></h3>		
+	
+	<p>======================================================================</p>
+	<h3><a href="inform/insert">섭취정보 등록</a></h3>
 </body>
 </html>

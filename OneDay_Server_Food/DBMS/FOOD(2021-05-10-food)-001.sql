@@ -38,6 +38,7 @@ ADD CONSTRAINT fk_icode
 FOREIGN KEY(fd_icode)
 REFERENCES tbl_items(it_code);
 
+DROP VIEW view_식품정보;
 CREATE VIEW view_식품정보 AS
 (
     SELECT F.fd_year AS 출시연도,
@@ -46,7 +47,7 @@ CREATE VIEW view_식품정보 AS
             I.it_name AS 분류명,
             F.fd_one AS "1회제공량",
             F.fd_total AS "총내용량(g)",
-            F.fd_energy AS "에너지(㎉)",
+            F.fd_energy AS "에너지(kcal)",
             F.fd_protein AS "단백질(g)",
             F.fd_fat AS "지방(g)",
             F.fd_car AS "탄수화물(g)",
