@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+button {
+	border: none;
+	width: 15%;
+	height: 40px;
+	background-color: gainsboro;
+}
+
+button:hover {
+	background-color: lavender;
+	cursor: pointer;
+}
