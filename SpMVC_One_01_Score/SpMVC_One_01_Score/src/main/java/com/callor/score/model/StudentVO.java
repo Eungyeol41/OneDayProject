@@ -13,12 +13,12 @@ import lombok.ToString;
 @NoArgsConstructor
 public class StudentVO {
 
-	private String st_num; 	// 학번
-	private String st_name; // 학생이름
-	private String st_dept; // 전공이름
-	private int st_grade; 	// 학년
-	private String st_tel; 	// 연락처
-	private String st_addr; // 주소
+	private String st_num; 		// 학번
+	private String st_name; 	// 학생이름
+	private String st_dept; 	// 전공이름
+	private Integer st_grade;	// 학년
+	private String st_tel; 		// 연락처
+	private String st_addr; 	// 주소
 
 	
 }
