@@ -2,6 +2,7 @@ package com.callor.score.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.callor.score.model.ListDTO;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service("listServiceV1")
 public class ListServiceImplV1 implements ListService{
 
+	@Autowired
 	protected ListDao listDao;
 	public ListServiceImplV1(ListDao listDao) {
 		this.listDao = listDao;
