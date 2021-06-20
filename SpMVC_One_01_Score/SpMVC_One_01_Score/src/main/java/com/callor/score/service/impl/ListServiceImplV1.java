@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service("listServiceV1")
 public class ListServiceImplV1 implements ListService{
 
-	@Autowired
+	@Autowired(required=false)
 	protected ListDao listDao;
 	public ListServiceImplV1(ListDao listDao) {
 		this.listDao = listDao;

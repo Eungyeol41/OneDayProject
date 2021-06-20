@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Repository("listDaoV1")
 public class ListDaoImplV1 implements ListDao {
 
-	@Autowired
+	@Autowired(required=false)
 	protected final JdbcTemplate jdbcTemplate;
 	public ListDaoImplV1(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;

@@ -32,4 +32,9 @@ public class StudentController {
 		
 		return "student/insert";
 	}
+	
+	public String info() {
+		
+		return "student/studentInfo";
+	}
 }

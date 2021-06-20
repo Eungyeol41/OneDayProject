@@ -25,7 +25,7 @@
 </script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	
 	<table class="view">
         <tr>
@@ -37,8 +37,8 @@
             <th>총점</th>
             <th>평균</th>
         </tr>
-        <c:forEach items="#{LIST}" var="LIST">
-	        <tr data-num="#{LIST.st_num}">
+        <c:forEach items="${LIST}" var="LIST">
+	        <tr data-num="${LIST.st_num}">
 	            <th>${LIST.학번}</th>
 	            <th>${LIST.이름}</th>
 	            <th>${LIST.전공}</th>

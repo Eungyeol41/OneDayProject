@@ -3,6 +3,7 @@ package com.callor.score.controller;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.callor.score.service.ListService;
 @Controller
 public class HomeController {
 	
+	@Autowired(required=false)
 	protected ListService listService;
 	public HomeController(ListService listService) {
 		this.listService = listService;
