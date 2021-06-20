@@ -51,7 +51,7 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	<form class="st_insert" method="POST">
 		<fieldset>
-	        <legend>학생 정보 추가하기</legend>
+	        <legend>학생 정보 수정하기</legend>
 	        <div>
 	            <label>학번</label>
 	            <input type="text" value="${ST.st_num}">
@@ -78,7 +78,7 @@
 	        </div>
 	        <div class="button">
 	        	<button type="reset">다시 쓰기</button>
-	        	<button id="btn_insert" type="button">추가하기</button>
+	        	<button id="btn_insert" type="button">수정하기</button>
 	        </div>
 	    </fieldset>
     </form>
@@ -122,7 +122,7 @@
 			return false;
 		}
 		
-		alert("추가" 
+		alert("수정" 
 				+ name.value + "\n"
 				+ dept.value + "\n"
 				+ grade.value + "\n"

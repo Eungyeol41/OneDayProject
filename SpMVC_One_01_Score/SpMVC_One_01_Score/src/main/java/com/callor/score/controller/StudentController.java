@@ -39,15 +39,12 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(HttpSession hSession, Model model) {
 		
-		return "student/insert";
-	}
-	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(String name, String dept, String del, String addr, Integer grade) {
-		
-		
+		StudentVO vo = (StudentVO)hSession.getAttribute("STVO");
+		if(vo == null) {
+			return "redirect:/";
+		}
 		
 		return "student/insert";
 	}
