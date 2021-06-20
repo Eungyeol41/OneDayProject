@@ -54,19 +54,27 @@
 	        <legend>학생 정보 추가하기</legend>
 	        <div>
 	            <label>학번</label>
-	            <input type="text" value="">
+	            <input type="text" value="${ST.st_num}">
 	        </div>
 	        <div>
 	            <label>이름</label>
-	            <input type="text">
+	            <input type="text" name="name">
 	        </div>
 	        <div>
 	            <label>전공</label>
-	            <input type="text">
+	            <input type="text" name="dept">
 	        </div>
 	        <div>
 	            <label>학년</label>
-	            <input type="text">
+	            <input type="number" name="grade">
+	        </div>
+	        <div>
+	            <label>전화번호</label>
+	            <input type="tel" name="tel">
+	        </div>
+	        <div>
+	            <label>주소</label>
+	            <input type="text" name="addr">
 	        </div>
 	        <div class="button">
 	        	<button type="reset">다시 쓰기</button>
@@ -75,4 +83,55 @@
 	    </fieldset>
     </form>
 </body>
+<script>
+	document.querySelector("button#id").addEventListener("click", (ev)=> {
+		
+		let name = document.querySelector("input[name='name']");
+		let dept = document.querySelector("input[name='dept']");
+		let grade = document.querySelector("input[name='grade']");
+		let tel = document.querySelector("input[name='tel']");
+		let addr = document.querySelector("input[name='addr']");
+		
+		if(name.value === "") {
+			alert("이름을 꼭 입력해주세요 !!");
+			name.focus();
+			return false;
+		}
+		
+		if(dept.value === "") {
+			alert("전공을 꼭 입력해주세요 !!");
+			dept.focus();
+			return false;
+		}
+		
+		if(grade.value === "") {
+			alert("학년을 꼭 입력해주세요 !!");
+			grade.focus();
+			return false;
+		}
+		
+		if(tel.value === "") {
+			alert("전화번호를 꼭 입력해주세요 !!");
+			tel.focus();
+			return false;
+		}
+		
+		if(addr.value === "") {
+			alert("주소를 꼭 입력해주세요 !!");
+			addr.focus();
+			return false;
+		}
+		
+		alert("추가" 
+				+ name.value + "\n"
+				+ dept.value + "\n"
+				+ grade.value + "\n"
+				+ tel.value + "\n"
+				+ addr.value + "\n"
+		);
+		
+		document.querySelector("form.st_insert").submit();
+		
+	})
+</script>
 </html>
