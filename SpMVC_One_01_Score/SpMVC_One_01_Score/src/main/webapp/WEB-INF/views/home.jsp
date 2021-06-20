@@ -38,7 +38,7 @@
             <th>평균</th>
         </tr>
         <c:forEach items="${LIST}" var="LIST">
-	        <tr data-num="${LIST.st_num}">
+	        <tr data-num="${LIST.학번}">
 	            <th>${LIST.학번}</th>
 	            <th>${LIST.이름}</th>
 	            <th>${LIST.전공}</th>

@@ -39,6 +39,18 @@ public class StudentController {
 		return "student/list";
 		
 	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String info(Model model, String st_num) {
+		
+		StudentVO stVO = studentDao.findById(st_num);
+		List<ScoreVO> scList = scoreDao.findByStNum(st_num);
+		
+		model.addAttribute("ST", stVO);
+		model.addAttribute("SC", scList);
+		
+		return "student/studentInfo";
+	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert(HttpSession hSession, Model model) {
@@ -51,17 +63,6 @@ public class StudentController {
 		return "student/insert";
 	}
 	
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String info(Model model, String st_num) {
-		
-		StudentVO stVO = studentDao.findById(st_num);
-		List<ScoreVO> scList = scoreDao.findByStNum(st_num);
-		
-		model.addAttribute("ST", stVO);
-		model.addAttribute("SC", scList);
-		
-		return "student/studentInfo";
-	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(StudentVO vo) {
