@@ -13,6 +13,7 @@ import com.callor.score.model.ScoreVO;
 import com.callor.score.model.StudentVO;
 import com.callor.score.persistance.ScoreDao;
 import com.callor.score.persistance.StudentDao;
+import com.callor.score.service.ListService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +32,12 @@ public class StudentController {
 	
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	public String student(HttpSession hSession, Model model) {
-		
-		Object obj = hSession.getAttribute("STUDENTVO");
-		StudentVO stVO = (StudentVO)obj;
 
+		List<StudentVO> stList = studentDao.selectAll();
+		
+		model.addAttribute("ST", stList);
 		return "student/list";
+		
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)

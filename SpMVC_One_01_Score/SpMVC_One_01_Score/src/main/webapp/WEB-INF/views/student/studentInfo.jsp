@@ -62,7 +62,7 @@
 		let className = ev.target.className;
 		
 		if(className === "btn_st_update") {
-			location.href="${rootPath}/WEB-INF/views/student/update.jsp";
+			location.href="${rootPath}/WEB-INF/views/student/insert";
 		} else if(className === "btn_st_delete") {
 			
 		} else if(className === "btn_sc_insert") {

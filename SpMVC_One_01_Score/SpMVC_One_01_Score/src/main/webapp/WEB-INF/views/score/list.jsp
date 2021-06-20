@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생정보 List</title>
+<title>학생별 성적 정보 List</title>
 <link href="${rootPath}/static/css/home.css?2021-06-18-002" rel="stylesheet" />
 <link href="${rootPath}/static/css/layout_button.css?2021-06-18-001" rel="stylesheet" />
 <style>
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<h2>학생 정보</h2>
+	<h2>학생 별 성적 정보</h2>
 	<table>
 		<tr>
 			<th>학번</th>
@@ -45,8 +45,8 @@
 		</c:forEach>
 	</table>
 	<div>
-		<button id="st_insert" type="button">학생 정보 추가</button>
-		<button id="st_update" type="button">학생 정보 수정</button>	
+		<button id="sc_insert" type="button">성적 정보 추가</button>
+		<button id="sc_update" type="button">성적 정보 수정</button>	
 	</div>
 	<table>
 		<tr>
@@ -66,13 +66,13 @@
 
 </body>
 <script>
-		document.querySelector("button#st_insert").addEventListener("click", ()=> {
+		document.querySelector("button#sc_insert").addEventListener("click", ()=> {
 			alert("정보를 추가하시겠습니까?"); 
-			location.href = "${rootPath}/student/insert"
+			location.href = "${rootPath}/score/insert";
 		});
-		document.querySelector("button#st_update").addEventListener("click", ()=> {
+		document.querySelector("button#sc_update").addEventListener("click", ()=> {
 			alert("수정하시겠습니까?");
-			location.href = "${rootPath}/student/update"
+			location.href = "${rootPath}/score/update";
 		});
 </script>
 </html>

@@ -40,6 +40,7 @@ public class StudentServiceImplV1 implements StudentService{
 		studentDao.insert(vo);
 		
 		return 0;
+		
 	}
 
 }
