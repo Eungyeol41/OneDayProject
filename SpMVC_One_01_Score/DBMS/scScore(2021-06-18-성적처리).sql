@@ -26,13 +26,13 @@ alter table tbl_student drop foreign key fk_student;
 
 DROP VIEW view_리스트;
 CREATE VIEW view_리스트 AS (
-	SELECT T.st_num AS 학번,
-			T.st_name AS 이름,
-            T.st_dept AS 전공,
-            T.st_grade AS 학년,
-            COUNT(C.sc_subject) AS 응시과목,
-            SUM(C.sc_score) AS 총점,
-            ROUND(SUM(C.sc_score) / COUNT(C.sc_subject), 2) AS 평균
+	SELECT T.st_num AS v_num,
+			T.st_name AS v_name,
+            T.st_dept AS v_dept,
+            T.st_grade AS v_grade,
+            COUNT(C.sc_subject) AS v_subject,
+            SUM(C.sc_score) AS v_total,
+            ROUND(SUM(C.sc_score) / COUNT(C.sc_subject), 2) AS v_avg
     FROM tbl_student T
 		LEFT JOIN tbl_score C
 			ON T.st_num = C.sc_stnum

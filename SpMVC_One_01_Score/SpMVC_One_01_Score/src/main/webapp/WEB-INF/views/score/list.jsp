@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>학생별 성적 정보 List</title>
-<link href="${rootPath}/static/css/home.css?2021-06-18-002" rel="stylesheet" />
-<link href="${rootPath}/static/css/layout_button.css?2021-06-18-001" rel="stylesheet" />
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <style>
 	h2 {
 		text-align: center;	
+		margin: 10px auto;
+		margin-top: 40px;
 	}
 	div {
 		text-align: right;
@@ -33,7 +34,7 @@
 			<th>전화번호</th>
 			<th>주소</th>
 		</tr>
-		<c:forEach items="${ST}" var="ST" varStatus="index">
+		<c:forEach items="${STVO}" var="ST" varStatus="index">
 			<tr>
 				<th>${ST.st_num}</th>
 				<th>${ST.st_name}</th>
@@ -67,8 +68,12 @@
 </body>
 <script>
 		document.querySelector("button#sc_insert").addEventListener("click", ()=> {
-			alert("정보를 추가하시겠습니까?"); 
-			location.href = "${rootPath}/score/insert";
+			if(confirm("정보를 추가하시겠습니까?")){
+				alert("정보를 추가합니다.");
+				location.href = "${rootPath}/score/insert";
+			} else {
+				alert("취소합니다.");
+			}
 		});
 		document.querySelector("button#sc_update").addEventListener("click", ()=> {
 			alert("수정하시겠습니까?");

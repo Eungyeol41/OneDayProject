@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>학생정보 추가</title>
-<link href="${rootPath}/static/css/layout_button.css?2021-06-18-002" rel="stylesheet" />
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <style>
 	* {
 		margin: 0;
@@ -78,13 +78,13 @@
 	        </div>
 	        <div class="button">
 	        	<button type="reset">다시 쓰기</button>
-	        	<button id="btn_insert" type="button">수정하기</button>
+	        	<button id="btn_update" type="button">수정하기</button>
 	        </div>
 	    </fieldset>
     </form>
 </body>
 <script>
-	document.querySelector("button#id").addEventListener("click", (ev)=> {
+	document.querySelector("button#btn_update").addEventListener("click", (ev)=> {
 		
 		let name = document.querySelector("input[name='name']");
 		let dept = document.querySelector("input[name='dept']");

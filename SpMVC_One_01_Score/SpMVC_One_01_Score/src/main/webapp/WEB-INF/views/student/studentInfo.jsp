@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>학생별 정보</title>
-<link href="${rootPath}/static/css/home.css?ver=2021-06-18-002" rel="stylesheet" />
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>

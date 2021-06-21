@@ -39,7 +39,7 @@ public class StudentDaoImplV1 implements StudentDao{
 		String sql = " SELECT * FROM tbl_student ";
 		sql += " WHERE st_num = ? ";
 		
-		StudentVO stVO = (StudentVO) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentVO.class));
+		StudentVO stVO = (StudentVO) jdbcTemplate.query(sql, new Object[] { pk }, new BeanPropertyRowMapper<StudentVO>(StudentVO.class));
 		log.debug("FINDBYID {}", stVO.toString());
 		
 		return stVO;
@@ -76,6 +76,7 @@ public class StudentDaoImplV1 implements StudentDao{
 		sql += " (st_num, st_name, st_dept, st_grade, st_tel, st_addr )";
 		sql += " VALUES(?, ?, ?, ?, ?, ?) ";
 		
+		log.debug(vo.toString());
 		Object[] params = new Object[] {
 				vo.getSt_num(),
 				vo.getSt_name(),

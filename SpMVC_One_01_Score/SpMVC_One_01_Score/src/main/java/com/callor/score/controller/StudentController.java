@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.Model;import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,6 +14,7 @@ import com.callor.score.model.StudentVO;
 import com.callor.score.persistance.ScoreDao;
 import com.callor.score.persistance.StudentDao;
 import com.callor.score.service.ListService;
+import com.callor.score.service.StudentService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,12 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = "/student")
 public class StudentController {
 
-	protected StudentDao studentDao;
-	protected ScoreDao scoreDao;
+	protected final StudentDao studentDao;
+	protected final ScoreDao scoreDao;
+	protected final StudentService studentService;
 	
-	public StudentController(StudentDao studentDao, ScoreDao scoreDao) {
+	public StudentController(StudentDao studentDao, ScoreDao scoreDao, StudentService studentService) {
 		this.studentDao = studentDao;
 		this.scoreDao = scoreDao;
+		this.studentService = studentService;
 	}
 	
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
@@ -35,7 +38,7 @@ public class StudentController {
 
 		List<StudentVO> stList = studentDao.selectAll();
 		
-		model.addAttribute("ST", stList);
+		model.addAttribute("STLIST", stList);
 		return "student/list";
 		
 	}
@@ -43,10 +46,10 @@ public class StudentController {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String info(Model model, String st_num) {
 		
-		StudentVO stVO = studentDao.findById(st_num);
+		StudentVO vo = studentDao.findById(st_num);
 		List<ScoreVO> scList = scoreDao.findByStNum(st_num);
 		
-		model.addAttribute("ST", stVO);
+		model.addAttribute("ST", vo);
 		model.addAttribute("SC", scList);
 		
 		return "student/studentInfo";
@@ -55,17 +58,43 @@ public class StudentController {
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insert(HttpSession hSession, Model model) {
 		
-		StudentVO vo = (StudentVO)hSession.getAttribute("STVO");
-		if(vo == null) {
-			return "redirect:/";
-		}
+		StudentVO vo = (StudentVO)hSession.getAttribute("vo");
 		
 		return "student/insert";
 	}
 	
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(String name, String dept, Integer grade, String tel, String addr, StudentVO vo) {
+
+		vo.setSt_addr(addr);
+		vo.setSt_dept(dept);
+		vo.setSt_grade(grade);
+		vo.setSt_name(name);
+		vo.setSt_tel(tel);
+		
+		studentService.insert(vo);
+		log.debug(vo.toString());
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String update (HttpSession hSession, Model model) {
+		
+		StudentVO vo = (StudentVO)hSession.getAttribute("vo");
+		model.addAttribute("STVO", vo);
+		
+		return "student/update";
+	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(StudentVO vo) {
+	public String update(String name, String dept, Integer grade, String tel, String addr, StudentVO vo) {
+		
+		vo.setSt_addr(addr);
+		vo.setSt_dept(dept);
+		vo.setSt_grade(grade);
+		vo.setSt_name(name);
+		vo.setSt_tel(tel);
 		
 		studentDao.update(vo);
 		
@@ -73,7 +102,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(String st_num) {
+	public String delete(String st_num, Model model) {
 		
 		studentDao.delete(st_num);
 		

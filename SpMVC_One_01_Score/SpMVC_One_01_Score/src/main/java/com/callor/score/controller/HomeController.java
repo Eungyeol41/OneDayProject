@@ -10,23 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.score.model.ListDTO;
-import com.callor.score.service.ListService;
+import com.callor.score.persistance.ListDao;
 
 @Controller
 public class HomeController {
 	
-	@Autowired(required=false)
-	protected ListService listService;
-	public HomeController(ListService listService) {
-		this.listService = listService;
+	protected final ListDao listDao;
+	public HomeController(ListDao listDao) {
+		this.listDao = listDao;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		List<ListDTO> list = listService.viewList();
-		
-		model.addAttribute("LIST", list);
+		List<ListDTO> listDTO = listDao.selectAll();
+		model.addAttribute("LISTDTO", listDTO);
 		
 		return "home";
 		

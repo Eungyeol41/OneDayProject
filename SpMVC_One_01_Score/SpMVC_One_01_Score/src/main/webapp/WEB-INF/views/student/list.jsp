@@ -7,17 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>학생정보 List</title>
-<link href="${rootPath}/static/css/home.css?2021-06-18-002" rel="stylesheet" />
-<link href="${rootPath}/static/css/layout_button.css?2021-06-18-001" rel="stylesheet" />
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <style>
-	h2 {
-		text-align: center;	
-	}
-	div {
-		text-align: right;
-		margin: 10px auto;
-	}
+h2 {
+	text-align: center;
+	margin: 10px auto;
+	margin-top: 40px;
+}
 
+div {
+	text-align: right;
+	margin: 10px auto;
+}
+
+button {
+	
+}
 </style>
 
 </head>
@@ -33,8 +38,8 @@
 			<th>전화번호</th>
 			<th>주소</th>
 		</tr>
-		<c:forEach items="${ST}" var="ST" varStatus="index">
-			<tr>
+		<c:forEach items="${STLIST}" var="ST">
+			<tr data-num="${ST.st_num}">
 				<th>${ST.st_num}</th>
 				<th>${ST.st_name}</th>
 				<th>${ST.st_dept}</th>
@@ -46,33 +51,26 @@
 	</table>
 	<div>
 		<button id="st_insert" type="button">학생 정보 추가</button>
-		<button id="st_update" type="button">학생 정보 수정</button>	
 	</div>
-	<table>
-		<tr>
-			<th>학번</th>
-			<th>이름</th>
-			<th>전공</th>
-			<th>학년</th>
-		</tr>
-		<tr>
-			<th>학번</th>
-			<th>이름</th>
-			<th>전공</th>
-			<th>학년</th>
-		</tr>
-	</table>
-
-
 </body>
 <script>
 		document.querySelector("button#st_insert").addEventListener("click", ()=> {
 			alert("정보를 추가하시겠습니까?"); 
-			location.href = "${rootPath}/student/insert"
+			location.href = "${rootPath}/student/insert";
 		});
-		document.querySelector("button#st_update").addEventListener("click", ()=> {
-			alert("수정하시겠습니까?");
-			location.href = "${rootPath}/student/update"
+		
+		document.querySelector("table").addEventListener("click", (ev)=> {
+			
+			let tagName = ev.target.tagName;
+			console.log(tagName);
+			
+			if(tagName == "TH") {
+				let st_num = ev.target.closest("TR").dataset.num;
+				console.log(st_num);
+				alert(st_num + "을 확인합니다.");
+				
+				location.href = "${rootPath}/student/Info?st_num=" + st_num;
+			}
 		});
 </script>
 </html>
