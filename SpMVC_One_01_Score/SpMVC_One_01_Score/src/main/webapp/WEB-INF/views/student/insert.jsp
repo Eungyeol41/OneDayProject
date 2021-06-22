@@ -29,6 +29,10 @@
 		padding: 3px;
 	}
 	
+	div label {
+		
+	}
+	
 	div label, input {
 		padding: 5px;
 		margin: 10px auto;
