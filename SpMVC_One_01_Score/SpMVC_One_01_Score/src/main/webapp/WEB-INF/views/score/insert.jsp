@@ -54,9 +54,13 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	<form class="st_insert" method="POST">
+	<form class="sc_insert" method="POST">
 		<fieldset>
 	        <legend>성적 추가하기</legend>
+	        <div>
+	        	<label>학번</label>
+	        	<input type="number" name="num" value="${SC.sc_stnum}">
+	        </div>
 	        <div>
 	            <label>과목명</label>
 	            <input type="text" name="subject" value="${SC.sc_subject}">
@@ -72,17 +76,21 @@
     </form>
 </body>
 <script>
-	document.querySelector("button#btn_insert").addEventListener("click", (ev)=> {
+	document.querySelector("button#sc_insert").addEventListener("click", (ev)=> {
 		
-		let name = document.querySelector("input[name='name']");
-		let dept = document.querySelector("input[name='dept']");
-		let grade = document.querySelector("input[name='grade']");
-		let tel = document.querySelector("input[name='tel']");
-		let addr = document.querySelector("input[name='addr']");
+		let num = document.querySelector("input[name='num']");
+		let subject = document.querySelector("input[name='subject']");
+		let score= document.querySelector("input[name='score']");
+		
+		if(num.value === "") {
+			alert("학번을 꼭 입력해주세요 !!");
+			name.focus();
+			return false;
+		}
 		
 		if(subject.value === "") {
-			alert("과목명을 꼭 입력해주세요 !!");
-			name.focus();
+			alert("과목명을 입력해주세요 !!");
+			subject.focus();
 			return false;
 		}
 		
@@ -93,6 +101,7 @@
 		}
 		
 		alert("추가" +"\n"
+				+ num.value + "\n"
 				+ subject.value + "\n"
 				+ score.value
 		);

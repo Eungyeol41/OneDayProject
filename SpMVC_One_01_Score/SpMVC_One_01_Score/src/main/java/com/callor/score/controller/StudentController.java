@@ -66,11 +66,11 @@ public class StudentController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(String name, String dept, Integer grade, String tel, String addr, StudentVO vo) {
 
-		vo.setSt_addr(addr);
+		vo.setSt_name(name);
 		vo.setSt_dept(dept);
 		vo.setSt_grade(grade);
-		vo.setSt_name(name);
 		vo.setSt_tel(tel);
+		vo.setSt_addr(addr);
 		
 		studentService.insert(vo);
 		log.debug(vo.toString());
@@ -88,7 +88,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(String name, String dept, Integer grade, String tel, String addr, StudentVO vo) {
+	public String update(String num, String name, String dept, Integer grade, String tel, String addr, StudentVO vo) {
 		
 		vo.setSt_addr(addr);
 		vo.setSt_dept(dept);
@@ -98,7 +98,7 @@ public class StudentController {
 		
 		studentDao.update(vo);
 		
-		return "redirect:/";
+		return "redirect:/info?num=" + num;
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

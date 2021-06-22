@@ -42,5 +42,17 @@ public class StudentServiceImplV1 implements StudentService{
 		return 0;
 		
 	}
+	
+	@Override
+	public int update(StudentVO vo) {
+		// TODO 업데이트 하기
+		return studentDao.update(vo);
+	}
+
+	@Override
+	public int delete(String st_num) {
+		return studentDao.delete(st_num);
+	}
+
 
 }

@@ -69,7 +69,7 @@ button {
 				console.log(st_num);
 				alert(st_num + "을 확인합니다.");
 				
-				location.href = "${rootPath}/student/Info?st_num=" + st_num;
+				location.href = "${rootPath}/student/info?st_num=" + st_num;
 			}
 		});
 </script>

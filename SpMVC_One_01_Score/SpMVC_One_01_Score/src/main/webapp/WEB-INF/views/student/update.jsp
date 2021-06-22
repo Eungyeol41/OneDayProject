@@ -54,27 +54,27 @@
 	        <legend>학생 정보 수정하기</legend>
 	        <div>
 	            <label>학번</label>
-	            <input type="text" value="${ST.st_num}">
+	            <input type="text" value="${STVO.st_num}">
 	        </div>
 	        <div>
 	            <label>이름</label>
-	            <input type="text" name="name" value="${ST.st_name}">
+	            <input type="text" name="name" value="${STVO.st_name}">
 	        </div>
 	        <div>
 	            <label>전공</label>
-	            <input type="text" name="dept" value="${ST.st_dept}">
+	            <input type="text" name="dept" value="${STVO.st_dept}">
 	        </div>
 	        <div>
 	            <label>학년</label>
-	            <input type="number" name="grade" value="${ST.st_grade}">
+	            <input type="number" name="grade" value="${STVO.st_grade}">
 	        </div>
 	        <div>
 	            <label>전화번호</label>
-	            <input type="tel" name="tel" value="${ST.st_tel}">
+	            <input type="tel" name="tel" value="${STVO.st_tel}">
 	        </div>
 	        <div>
 	            <label>주소</label>
-	            <input type="text" name="addr" value="${ST.st_addr}">
+	            <input type="text" name="addr" value="${STVO.st_addr}">
 	        </div>
 	        <div class="button">
 	        	<button type="reset">다시 쓰기</button>

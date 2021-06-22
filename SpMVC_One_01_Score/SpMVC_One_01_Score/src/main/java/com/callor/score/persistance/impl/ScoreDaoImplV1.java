@@ -74,13 +74,15 @@ public class ScoreDaoImplV1 implements ScoreDao{
 		
 		String sql = " INSERT INTO tbl_score ";
 		sql += " ( sc_stnum, sc_subject, sc_score )";
-		sql += " VALUES(?, ?, ?, ?) ";
+		sql += " VALUES(?, ?, ?) ";
 		
 		Object[] params = new Object[] {
+		
 				vo.getSc_stnum(),
 				vo.getSc_subject(),
 				vo.getSc_score()
 		};
+		
 		return jdbcTemplate.update(sql, params);
 		
 	}

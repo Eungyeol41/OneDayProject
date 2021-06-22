@@ -33,13 +33,15 @@ public class StudentDaoImplV1 implements StudentDao{
 	}
 
 	@Override
-	public StudentVO findById(String pk) {
+	public StudentVO findById(String st_num) {
 		// TODO Auto-generated method stub
 		
 		String sql = " SELECT * FROM tbl_student ";
 		sql += " WHERE st_num = ? ";
 		
-		StudentVO stVO = (StudentVO) jdbcTemplate.query(sql, new Object[] { pk }, new BeanPropertyRowMapper<StudentVO>(StudentVO.class));
+		Object[] params = new Object[] { st_num };
+		
+		StudentVO stVO = (StudentVO) jdbcTemplate.queryForObject(sql, params, new BeanPropertyRowMapper<StudentVO>(StudentVO.class));
 		log.debug("FINDBYID {}", stVO.toString());
 		
 		return stVO;
@@ -78,6 +80,7 @@ public class StudentDaoImplV1 implements StudentDao{
 		
 		log.debug(vo.toString());
 		Object[] params = new Object[] {
+				
 				vo.getSt_num(),
 				vo.getSt_name(),
 				vo.getSt_dept(),
@@ -85,6 +88,7 @@ public class StudentDaoImplV1 implements StudentDao{
 				vo.getSt_tel(),
 				vo.getSt_addr()
 		};
+		
 		return jdbcTemplate.update(sql, params);
 		
 	}
@@ -98,6 +102,7 @@ public class StudentDaoImplV1 implements StudentDao{
 		sql += " WHERE st_num = ? ";
 		
 		Object[] params = new Object[] {
+				
 				vo.getSt_name(),
 				vo.getSt_dept(),
 				vo.getSt_grade(),
@@ -116,7 +121,9 @@ public class StudentDaoImplV1 implements StudentDao{
 		String sql = " DELETE FROM tbl_student ";
 		sql += " WHERE st_num = ? ";
 		
-		return jdbcTemplate.update(sql, pk);
+		Object[] params = new Object[] { pk };
+		
+		return jdbcTemplate.update(sql, params);
 		
 	}
 
