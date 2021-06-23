@@ -31,7 +31,7 @@ public class ListDaoImplV1 implements ListDao {
 		List<ListDTO> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<ListDTO>(ListDTO.class));
 		log.debug("SELECT {}", list.toString());
 		
-		return null;
+		return list;
 	}
 
 	@Override

@@ -39,7 +39,7 @@ public class ScoreDaoImplV1 implements ScoreDao{
 		String sql = " SELECT * FROM tbl_score ";
 		sql += " WHERE sc_stnum = ? ";
 		
-		ScoreVO scVO = (ScoreVO) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ScoreVO.class));
+		ScoreVO scVO = (ScoreVO)jdbcTemplate.queryForObject(sql, new Object[] {pk}, new BeanPropertyRowMapper<ScoreVO>(ScoreVO.class));
 		log.debug("FINDBYID {}", scVO.toString()); 
 		
 		return scVO;
@@ -52,10 +52,12 @@ public class ScoreDaoImplV1 implements ScoreDao{
 		String sql = " SELECT * FROM tbl_score ";
 		sql += " WHERE sc_stnum = ? ";
 		
-		List<ScoreVO> scList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<ScoreVO>(ScoreVO.class));
+		Object[] params = new Object[] { sc_stnum };
+		
+		List<ScoreVO> scList = jdbcTemplate.query(sql, params, new BeanPropertyRowMapper<ScoreVO>(ScoreVO.class));
 		log.debug("list {}", scList.toString());
 		
-		return null;
+		return scList;
 	}
 
 	@Override
