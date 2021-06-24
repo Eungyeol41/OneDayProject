@@ -26,7 +26,7 @@
 			<th>${ST.st_grade}</th>
 		</tr>
 	</table>
-	<div>
+	<div class="button">
 		<button class="btn_st_update">학생 정보 수정</button>
 		<button class="btn_st_delete">학생 정보 삭제</button>
 	</div>
@@ -46,7 +46,7 @@
 		</c:forEach>
 	</table>
 
-	<div>
+	<div class="button">
 		<button class="btn_sc_insert">성적 추가</button>
 	</div>
 </body>
@@ -55,9 +55,9 @@
 		let className = ev.target.className;
 		
 		if(className === "btn_st_update") {
-			location.href="${rootPath}/WEB-INF/views/student/update";
+			location.href="${rootPath}/student/update";
 		} else if(className === "btn_st_delete") {
-			
+			location.href="${rootPath}/student/delete"
 		} else if(className === "btn_sc_insert") {
 			
 		}

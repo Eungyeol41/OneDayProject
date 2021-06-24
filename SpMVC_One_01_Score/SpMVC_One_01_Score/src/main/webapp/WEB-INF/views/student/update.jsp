@@ -38,13 +38,6 @@
 		border-radius: 5px;
 		border-color: lavender;
 	}
-	
-	div.button {
-		text-align: right;
-		margin-bottom: 5px;
-		margin-right: 30%;
-	}
-	
 </style>
 </head>
 <body>
@@ -122,7 +115,7 @@
 			return false;
 		}
 		
-		alert("수정" 
+		alert("수정" + "\n"
 				+ name.value + "\n"
 				+ dept.value + "\n"
 				+ grade.value + "\n"

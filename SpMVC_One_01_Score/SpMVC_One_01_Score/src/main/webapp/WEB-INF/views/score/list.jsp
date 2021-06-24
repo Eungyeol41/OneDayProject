@@ -14,11 +14,6 @@
 		margin: 10px auto;
 		margin-top: 40px;
 	}
-	div {
-		text-align: right;
-		margin: 10px auto;
-	}
-
 </style>
 
 </head>
@@ -45,7 +40,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<div>
+	<div class="button">
 		<button id="sc_insert" type="button">성적 정보 추가</button>
 		<button id="sc_update" type="button">성적 정보 수정</button>	
 	</div>
@@ -56,12 +51,7 @@
 			<th>전공</th>
 			<th>학년</th>
 		</tr>
-		<tr>
-			<th>학번</th>
-			<th>이름</th>
-			<th>전공</th>
-			<th>학년</th>
-		</tr>
+		
 	</table>
 
 

@@ -43,12 +43,6 @@
 		border-color: lavender;
 	}
 	
-	div.button {
-		text-align: right;
-		margin-bottom: 5px;
-		margin-right: 30%;
-	}
-	
 </style>
 </head>
 <body>

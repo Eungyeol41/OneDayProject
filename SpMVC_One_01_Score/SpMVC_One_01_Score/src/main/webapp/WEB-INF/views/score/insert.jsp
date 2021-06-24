@@ -43,13 +43,6 @@
 		border-radius: 5px;
 		border-color: lavender;
 	}
-	
-	div.button {
-		text-align: right;
-		margin-bottom: 5px;
-		margin-right: 30%;
-	}
-	
 </style>
 </head>
 <body>
@@ -69,7 +62,7 @@
 	            <label>점수</label>
 	            <input type="number" name="score" value="${SC.sc_score}">
 	        </div>
-	        <div>
+	        <div class="button">
 	        	<button id="sc_insert" type="button">성적 추가하기</button>
 	        </div>
 	    </fieldset>

@@ -6,5 +6,5 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${rootPath}/static/css/home.css?ver=2021-06-20-003" rel="stylesheet" />
-<link href="${rootPath}/static/css/layout_button.css?ver=2021-06-20-003" rel="stylesheet" />
+<link href="${rootPath}/static/css/home.css?ver=2021-06-24-001" rel="stylesheet" />
+<link href="${rootPath}/static/css/layout_button.css?ver=2021-06-24-002" rel="stylesheet" />
